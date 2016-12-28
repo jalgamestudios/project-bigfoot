@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ProjectBigfoot.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +24,7 @@ namespace ProjectBigfoot.Scenes.Ingame.World
         {
             layers = new List<ObjectLayer>();
             ObjectLayer test = new ObjectLayer();
-            //test.objects.Add(new LevelObject())
+            test.objects.Add(new LevelObject(new Vector2(0, 0), new Vector2(1, 1.5f), RenderingManager.contentManager.Load<Texture2D>("characters/wurmi/wurmi-l")));
             layers.Add(test);
 
         }

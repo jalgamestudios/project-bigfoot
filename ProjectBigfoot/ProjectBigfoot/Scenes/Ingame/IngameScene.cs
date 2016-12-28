@@ -1,4 +1,5 @@
 ﻿using ProjectBigfoot.Engine.SceneManagment;
+using ProjectBigfoot.Scenes.Ingame.World;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,17 @@ namespace ProjectBigfoot.Scenes.Ingame
     {
         public void init()
         {
+            WorldManager.init();
         }
 
         public void update()
         {
+            WorldManager.update();
         }
 
         public void draw()
         {
+            WorldManager.draw();
         }
     }
 }

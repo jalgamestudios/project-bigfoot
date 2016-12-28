@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
+using ProjectBigfoot.Engine.SceneManagment;
+using ProjectBigfoot.Rendering;
+using ProjectBigfoot.Scenes.Common;
 
 namespace ProjectBigfoot
 {
@@ -27,15 +30,21 @@ namespace ProjectBigfoot
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            SceneManager.init();
+            RenderingManager.init(graphics, spriteBatch, Content);
+            StartupManager.startUp();
         }
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            SceneManager.update();
         }
         protected override void Draw(GameTime gameTime)
         {
-            graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
             base.Draw(gameTime);
+            RenderingManager.startDraw();
+            SceneManager.draw();
+            RenderingManager.endDraw();
         }
     }
 }
