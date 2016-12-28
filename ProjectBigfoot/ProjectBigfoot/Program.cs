@@ -15,56 +15,56 @@ using UIKit;
 
 namespace ProjectBigfoot
 {
-	#if __IOS__ || __TVOS__
+#if __IOS__ || __TVOS__
     [Register("AppDelegate")]
     class Program : UIApplicationDelegate
     
 #else
-	static class Program
-    #endif
+    static class Program
+#endif
     {
-		private static Game1 game;
+        private static Game1 game;
 
-		internal static void RunGame ()
-		{
-			game = new Game1 ();
-			game.Run ();
-			#if !__IOS__  && !__TVOS__
-			game.Dispose ();
-			#endif
-		}
+        internal static void RunGame()
+        {
+            game = new Game1();
+            game.Run();
+#if !__IOS__ && !__TVOS__
+            game.Dispose();
+#endif
+        }
 
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
-		#if !MONOMAC && !__IOS__  && !__TVOS__
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+#if !MONOMAC && !__IOS__ && !__TVOS__
         [STAThread]
-		#endif
-        static void Main (string[] args)
-		{
-			#if MONOMAC
+#endif
+        static void Main(string[] args)
+        {
+#if MONOMAC
             NSApplication.Init ();
 
             using (var p = new NSAutoreleasePool ()) {
                 NSApplication.SharedApplication.Delegate = new AppDelegate();
                 NSApplication.Main(args);
             }
-			#elif __IOS__ || __TVOS__
+#elif __IOS__ || __TVOS__
             UIApplication.Main(args, null, "AppDelegate");
-			#else
-			RunGame ();
-			#endif
-		}
+#else
+            RunGame();
+#endif
+        }
 
-		#if __IOS__ || __TVOS__
+#if __IOS__ || __TVOS__
         public override void FinishedLaunching(UIApplication app)
         {
             RunGame();
         }
-        #endif
-	}
+#endif
+    }
 
-	#if MONOMAC
+#if MONOMAC
     class AppDelegate : NSApplicationDelegate
     {
         public override void FinishedLaunching (MonoMac.Foundation.NSObject notification)
@@ -83,6 +83,6 @@ namespace ProjectBigfoot
             return true;
         }
     }  
-    #endif
+#endif
 }
 
